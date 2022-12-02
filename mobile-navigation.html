@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Navigation</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        background-color: black;
+    }
+    .listed{
+        display: flex;
+        align-items:flex-start;
+        justify-content: end;
+        list-style: none;
+    }
+    a{
+        color: white;
+        text-decoration: none;
+        margin:5vw;
+        padding:1rem;
+    }
+    span{
+        font-weight: 700;
+    }
+    @media screen and (max-width:30rem) {
+        body{
+            background-image: url("Mobile-nav3.jfif");
+            
+            background-size: 130%;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+        .listed{
+            flex-direction: column;
+            background-color: hsl(0 0% 100% / 0.1);
+            position: absolute;
+            inset: 0px 0px 0px 100px;
+            justify-content: start;
+            padding: 90px 0px;
+            backdrop-filter: blur(1rem);
+            transform: translateX(100%);
+            transition: transform 350ms ease-in-out;
+        }
+        span{
+            padding:0px 10px;
+            font-weight: 700;
+        }
+        li{
+            padding: 20px 0px;
+        }
+        .toggle{
+        position: absolute;
+        background: url("menubar.png");
+        top: 2rem;
+        right: 2rem;
+        z-index: 9999;
+        aspect-ratio: 1; 
+        width: 2rem;
+        background-size:100%;
+        border: 0;
+    }
+    .listed[data-visible="true"]{
+        transform: translateX(0%);
+    }
+    }
+</style>
+<body>
+    <button class="toggle" aria-controls="listed" aria-expanded="false"></button>
+    <div class="navigation-bar">
+        <ul class="listed" data-visible="false">
+            <li><a href="Home.html"><span>00</span>Home</a></li>
+            <li><a href="About.html"><span>01</span>About</a></li>
+            <li><a href="Contact.html"><span>02</span>Contact</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+    const nav=document.querySelector(".listed");
+    const tog=document.querySelector(".toggle");
+    tog.addEventListener('click',() => {
+        const vis=nav.getAttribute("data-visible");
+        
+        if(vis==="false"){
+            nav.setAttribute("data-visible",true);
+        }
+        else{
+            nav.setAttribute("data-visible",false);
+        }
+    })
+</script>
+</html>
